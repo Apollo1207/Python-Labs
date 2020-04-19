@@ -1,4 +1,6 @@
 class SportBuild:
+    """Initialization superclass"""
+
     def __init__(self, number_of_seats=None, year_of_foundation=None, location=None, scale_of_field=None,
                  name_of_sport=None):
         self.number_of_seats = number_of_seats
@@ -10,6 +12,8 @@ class SportBuild:
     def __del__(self):
         return
 
-
-
-
+    def __str__(self):
+        return "NumberOfSeats: {} \t YearOfFoundation: {} \t Location: {} \t ScaleOfField: {} \t " \
+               "NameOfSport: {}" \
+            .format(self.number_of_seats, self.year_of_foundation, self.location, self.scale_of_field,
+                    self.name_of_sport)
