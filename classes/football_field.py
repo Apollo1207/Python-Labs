@@ -1,5 +1,5 @@
 from classes.sport_build import SportBuild
-from classes.roof_type_type import RoofType
+from classes.roof_type import RoofType
 
 
 class FootballField(SportBuild):

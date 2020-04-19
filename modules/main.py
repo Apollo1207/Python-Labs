@@ -1,7 +1,7 @@
 from classes.football_field import FootballField
 from classes.athletics_field import AthleticsField
 from classes.swimming_pool import SwimmingPool
-from classes.roof_type_type import RoofType
+from classes.roof_type import RoofType
 from classes.purification_system_type import PurificationSystem
 from manager.sport_build_manager import SportBuildManager
 
