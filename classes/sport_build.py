@@ -13,7 +13,7 @@ class SportBuild:
         return
 
     def __str__(self):
-        return "NumberOfSeats: {} \t YearOfFoundation: {} \t Location: {} \t ScaleOfField: {} \t " \
-               "NameOfSport: {}" \
+        return "NumberOfSeats:{}\tYearOfFoundation:{}\tLocation:{}\tScaleOfField:{}\t"\
+               "NameOfSport:{}"\
             .format(self.number_of_seats, self.year_of_foundation, self.location, self.scale_of_field,
                     self.name_of_sport)

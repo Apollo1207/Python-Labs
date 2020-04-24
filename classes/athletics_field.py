@@ -15,8 +15,7 @@ class AthleticsField(SportBuild):
         return
 
     def __str__(self):
-        return f"NumberOfSeats: {self.number_of_seats} \t YearOfFoundation: {self.year_of_foundation} \t " \
-               f"Location: {self.location} \t ScaleOfField: {self.scale_of_field} \t NameOfSport: " \
-               f"{self.name_of_sport}  \t  CountOfSportDisciplines: " \
-               f"{self.count_of_sport_disciplines} \t CountOfRunningTracks: " \
-               f"{self.count_of_running_tracks} \t TypeOfField: {self.type_of_field}"
+        return f"NumberOfSeats:{self.number_of_seats} YearOfFoundation:{self.year_of_foundation}"\
+               f" Location:{self.location} ScaleOfField:{self.scale_of_field} NameOfSport:" \
+               f"{self.name_of_sport} CountOfSportDisciplines:{self.count_of_sport_disciplines} CountOfRunningTracks:" \
+               f"{self.count_of_running_tracks} TypeOfField:{self.type_of_field}"
