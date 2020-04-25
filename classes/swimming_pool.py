@@ -17,7 +17,5 @@ class SwimmingPool(SportBuild):
         return
 
     def __str__(self):
-        return f"NumberOfSeats:{self.number_of_seats} YearOfFoundation:{self.year_of_foundation}"\
-               f" Location:{self.location} ScaleOfField:{self.scale_of_field} NameOfSport:" \
-               f"{self.name_of_sport} DepthOfPool:{self.depth_of_pool} CountOfTracks:" \
-               f"{self.count_of_tracks} PurificationSystem:{self.purification_system}"
+        return super().__str__() + f"DepthOfPool:{self.depth_of_pool} CountOfTracks:" \
+                                   f"{self.count_of_tracks} PurificationSystem:{self.purification_system}"

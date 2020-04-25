@@ -1,5 +1,8 @@
-class SportBuild:
-    """Initialization superclass"""
+from abc import ABC
+
+
+class SportBuild(ABC):
+    """Initialization abstract superclass"""
 
     def __init__(self, number_of_seats=None, year_of_foundation=None, location=None, scale_of_field=None,
                  name_of_sport=None):
@@ -13,7 +16,6 @@ class SportBuild:
         return
 
     def __str__(self):
-        return "NumberOfSeats:{}\tYearOfFoundation:{}\tLocation:{}\tScaleOfField:{}\t"\
-               "NameOfSport:{}"\
-            .format(self.number_of_seats, self.year_of_foundation, self.location, self.scale_of_field,
-                    self.name_of_sport)
+        return f"NumberOfSeats:{self.number_of_seats} YearOfFoundation:{self.year_of_foundation}" \
+               f" Location:{self.location} ScaleOfField:{self.scale_of_field} NameOfSport:" \
+               f"{self.name_of_sport} "

@@ -16,7 +16,5 @@ class FootballField(SportBuild):
         return
 
     def __str__(self):
-        return f"NumberOfSeats:{self.number_of_seats} YearOfFoundation:{self.year_of_foundation}" \
-               f" Location:{self.location} ScaleOfField:{self.scale_of_field} NameOfSport:" \
-               f"{self.name_of_sport} RoofType:{self.roof_type} ColorOfField:" \
-               f"{self.color_of_field} CountOfVipPlaces:{self.count_of_vip_places}"
+        return super().__str__() + f"RoofType:{self.roof_type} ColorOfField:" \
+                                   f"{self.color_of_field} CountOfVipPlaces:{self.count_of_vip_places}"
