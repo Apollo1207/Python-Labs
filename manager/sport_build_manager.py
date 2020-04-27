@@ -1,4 +1,3 @@
-import doctest
 from classes import FootballField
 from classes import AthleticsField
 from classes import SwimmingPool
@@ -47,6 +46,8 @@ class SportBuildManager:
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE, verbose=True,
                     extraglobs={'sport_build_manager_object': SportBuildManager(
                         sport_builds_list=[FootballField(1, 1, "Lviv", 1, "football", RoofType.OPEN, "green", 52),

@@ -1,4 +1,3 @@
-import doctest
 from classes import FootballField
 from classes import AthleticsField
 from classes import SwimmingPool
@@ -10,7 +9,8 @@ from manager import SportBuildManager
 class SportBuildManagerUtils:
     sport_builds_list = [FootballField(1, 1, "Lviv", 1, "football", RoofType.OPEN, "green", 52),
                          AthleticsField(2, 2, "Dnipro", 2, "athletics", 18, 9, "rubber"),
-                         SwimmingPool(3, 3, "Kyiv", 3, "swimming", 2, 9, PurificationSystem.ULTRAVIOLET)]
+                         SwimmingPool(3, 3, "Kyiv", 3, "swimming", 2, 9,
+                                      PurificationSystem.ULTRAVIOLET)]
 
     @staticmethod
     def sort_by_number_of_seats(reverse=None):
@@ -44,5 +44,6 @@ class SportBuildManagerUtils:
 
 
 if __name__ == "__main__":
-    doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE, verbose=True,
-                    extraglobs={'sport_build_manager_object_utils': SportBuildManagerUtils()})
+    import doctest
+
+    doctest.testmod(verbose=True, extraglobs={"sport_build_manager_object_utils": SportBuildManagerUtils()})
