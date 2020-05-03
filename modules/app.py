@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, abort
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow_sqlalchemy import ModelSchema
 from flask_marshmallow import Marshmallow
@@ -6,19 +6,22 @@ from marshmallow import fields
 import pymysql
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://Apollo:1207@127.0.0.1:3306/db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://Apollo:1207@127.0.0.1:3306/mydb"
 db = SQLAlchemy(app)
 
 
-class SportBuild(db.Model):
-    __tablename__ = "SportBuilds"
+class FootballField(db.Model):
+    __tablename__ = "FootballFields"
     id = db.Column(db.Integer, primary_key=True)
-    number_of_seats = db.Column(db.Integer)
-    year_of_foundation = db.Column(db.Integer)
-    location = db.Column(db.String(30))
-    scale_of_field = db.Column(db.Integer)
-    name_of_sport = db.Column(db.String(30))
+    number_of_seats = db.Column(db.Integer, unique=False)
+    year_of_foundation = db.Column(db.Integer, unique=False)
+    location = db.Column(db.String(30), unique=False)
+    scale_of_field = db.Column(db.Integer, unique=False)
+    name_of_sport = db.Column(db.String(30), unique=False)
+    roof_type = db.Column(db.String(30), unique=False)
+    color_of_field = db.Column(db.String(30), unique=False)
+    count_of_vip_places = db.Column(db.Integer, unique=False)
 
     def create(self):
         db.session.add(self)
@@ -29,9 +32,9 @@ class SportBuild(db.Model):
 db.create_all()
 
 
-class SportBuildSchema(ModelSchema):
+class FootballFieldSchema(ModelSchema):
     class Meta(ModelSchema.Meta):
-        model = SportBuild
+        model = FootballField
         sql_session = db.session
 
     id = fields.Integer(dump_only=True)
@@ -40,62 +43,76 @@ class SportBuildSchema(ModelSchema):
     location = fields.String(required=True)
     scale_of_field = fields.Integer(required=True)
     name_of_sport = fields.String(required=True)
+    roof_type = fields.String(required=True)
+    color_of_field = fields.String(required=True)
+    count_of_vip_places = fields.Integer(required=True)
 
 
-@app.route('/sportBuilds', methods=['GET'])
-def get_all_sport_builds():
-    get_sport_builds = SportBuild.query.all()
-    sport_build_schema = SportBuildSchema(many=True)
-    sport_builds = sport_build_schema.dump(get_sport_builds)
-    return make_response(jsonify({"sportBuild": sport_builds}))
+football_field_schema = FootballFieldSchema()
+football_fields_schema = FootballFieldSchema(many=True)
 
 
-@app.route('/sportBuilds/<id>', methods=['GET'])
-def get_sport_build_by_id(id):
-    get_sport_build = SportBuild.query.get(id)
-    sport_build_schema = SportBuildSchema()
-    sport_builds = sport_build_schema.dump(get_sport_build)
-    return make_response(jsonify({"sportBuild": sport_builds}))
+@app.route("/footballFields", methods=["GET"])
+def get_all_football_fields():
+    get_football_fields = FootballField.query.all()
+    if not get_football_fields:
+        abort(404)
+    football_fields = football_fields_schema.dump(get_football_fields)
+    return make_response(jsonify({"footballField": football_fields}), 200)
 
 
-@app.route('/sportBuilds', methods=['POST'])
-def create_sport_build():
+@app.route("/footballField/<id>", methods=["GET"])
+def get_football_field_by_id(id):
+    get_football_field = FootballField.query.get(id)
+    if not get_football_field:
+        abort(404)
+    football_fields = football_field_schema.dump(get_football_field)
+    return make_response(jsonify({"footballField": football_fields}), 200)
+
+
+@app.route("/footballField", methods=["POST"])
+def create_football_field():
     data = request.get_json()
-    sport_build_schema = SportBuildSchema()
-    sport_build = sport_build_schema.load(data)
-    sport_builds = sport_build_schema.dump(sport_build.create())
-    return make_response(jsonify({"sportBuild": sport_builds}), 200)
+    football_field = football_field_schema.load(data)
+    football_fields = football_field_schema.dump(football_field.create())
+    return make_response(jsonify({"footballField": football_fields}), 200)
 
 
-@app.route('/sportBuilds/<id>', methods=['PUT'])
+@app.route("/footballField/<id>", methods=["PUT"])
 def update_sport_build_by_id(id):
     data = request.get_json()
-    get_sport_build = SportBuild.query.get(id)
-    if data.get('number_of_seats'):
-        get_sport_build.number_of_seats = data['number_of_seats']
-    if data.get('year_of_foundation'):
-        get_sport_build.year_of_foundation = data['year_of_foundation']
-    if data.get('location'):
-        get_sport_build.location = data['location']
-    if data.get('scale_of_field'):
-        get_sport_build.scale_of_field = data['scale_of_field']
-    if data.get('name_of_sport'):
-        get_sport_build.name_of_sport = data['name_of_sport']
+    get_football_field = FootballField.query.get(id)
+    if data.get("number_of_seats"):
+        get_football_field.number_of_seats = data["number_of_seats"]
+    if data.get("year_of_foundation"):
+        get_football_field.year_of_foundation = data["year_of_foundation"]
+    if data.get("location"):
+        get_football_field.location = data["location"]
+    if data.get("scale_of_field"):
+        get_football_field.scale_of_field = data["scale_of_field"]
+    if data.get("name_of_sport"):
+        get_football_field.name_of_sport = data["name_of_sport"]
+    if data.get("roof_type"):
+        get_football_field.roof_type = data["roof_type"]
+    if data.get("color_of_field"):
+        get_football_field.color_of_field = data["color_of_field"]
+    if data.get("count_of_vip_places"):
+        get_football_field.count_of_vip_places = data["count_of_vip_places"]
 
-    db.session.add(get_sport_build)
+    db.session.add(get_football_field)
     db.session.commit()
-    sport_build_schema = SportBuildSchema(only=["id", "number_of_seats", "year_of_foundation", "location",
-                                                "scale_of_field", "name_of_sport"])
-    sport_builds = sport_build_schema.dump(get_sport_build)
-    return make_response(jsonify({"sportBuild": sport_builds}))
+    football_fields = football_field_schema.dump(get_football_field)
+    return make_response(jsonify({"footballField": football_fields}), 200)
 
 
-@app.route('/sportBuilds/<id>', methods=['DELETE'])
-def delete_sport_build_by_id(id):
-    get_sport_build = SportBuild.query.get(id)
-    db.session.delete(get_sport_build)
+@app.route("/footballField/<id>", methods=["DELETE"])
+def delete_football_field_by_id(id):
+    get_football_field = FootballField.query.get(id)
+    if not get_football_field:
+        abort(404)
+    db.session.delete(get_football_field)
     db.session.commit()
-    return make_response("", 204)
+    return make_response("", 200)
 
 
 if __name__ == "__main__":
