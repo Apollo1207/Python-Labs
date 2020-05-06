@@ -1,7 +1,4 @@
-from abc import ABC
-
-
-class SportBuild(ABC):
+class SportBuild():
     def __init__(self, number_of_seats=None, year_of_foundation=None, location=None, scale_of_field=None,
                  name_of_sport=None):
         self.number_of_seats = number_of_seats
