@@ -15,7 +15,6 @@ class SportBuildManagerUtils:
     @staticmethod
     def sort_by_number_of_seats(reverse=None):
         """
-        Sort by number of seats
         >>> sport_build_manager_object_utils.sort_by_number_of_seats(reverse=True)
         NumberOfSeats:3 YearOfFoundation:3 Location:Kyiv ScaleOfField:3 NameOfSport:swimming DepthOfPool:2 CountOfTracks:9 PurificationSystem:PurificationSystem.ULTRAVIOLETNumberOfSeats:2 YearOfFoundation:2 Location:Dnipro ScaleOfField:2 NameOfSport:athletics CountOfSportDisciplines:18 CountOfRunningTracks:9 TypeOfField:rubberNumberOfSeats:1 YearOfFoundation:1 Location:Lviv ScaleOfField:1 NameOfSport:football RoofType:RoofType.OPEN ColorOfField:green CountOfVipPlaces:52
 
@@ -29,7 +28,6 @@ class SportBuildManagerUtils:
     @staticmethod
     def sort_by_year_of_foundation(reverse=None):
         """
-         Sort by year of foundation
          >>> sport_build_manager_object_utils.sort_by_year_of_foundation(reverse=True)
          NumberOfSeats:3 YearOfFoundation:3 Location:Kyiv ScaleOfField:3 NameOfSport:swimming DepthOfPool:2 CountOfTracks:9 PurificationSystem:PurificationSystem.ULTRAVIOLETNumberOfSeats:2 YearOfFoundation:2 Location:Dnipro ScaleOfField:2 NameOfSport:athletics CountOfSportDisciplines:18 CountOfRunningTracks:9 TypeOfField:rubberNumberOfSeats:1 YearOfFoundation:1 Location:Lviv ScaleOfField:1 NameOfSport:football RoofType:RoofType.OPEN ColorOfField:green CountOfVipPlaces:52
 

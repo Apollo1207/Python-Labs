@@ -14,7 +14,6 @@ class SportBuildManager:
 
     def find_by_name_of_sport(self, name_of_sport):
         """
-        Find by name of sport
         >>> sport_build_manager_object.find_by_name_of_sport("football")
         NumberOfSeats:1 YearOfFoundation:1 Location:Lviv ScaleOfField:1 NameOfSport:football RoofType:RoofType.OPEN ColorOfField:green CountOfVipPlaces:52
 
@@ -30,7 +29,6 @@ class SportBuildManager:
 
     def find_by_scale_of_field(self, scale_of_field):
         """
-        Find by scale of field
         >>> sport_build_manager_object.find_by_scale_of_field(2)
         NumberOfSeats:2 YearOfFoundation:2 Location:Dnipro ScaleOfField:2 NameOfSport:athletics CountOfSportDisciplines:18 CountOfRunningTracks:9 TypeOfField:rubber
 
